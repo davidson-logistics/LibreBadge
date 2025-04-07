@@ -1,5 +1,5 @@
-from django.conf.urls import url, include
-from django.urls import path
+from django.conf.urls import include
+from django.urls import path, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -21,12 +21,12 @@ applicationadminpatterns = [
 ]
 urlpatterns = [
     path('', views.index, name='index'),
-    url('login/', views.login_request, name='login'),
-    url("logout/", views.logout_request, name="logout"),
-    url(r'^production/(?P<slug>[-\w]+)/$', views.production, name="production"),
-    url(r'^production/(?P<slug>[-\w]+)/cardholders/$', views.productionCardholders, name="productionCardholders"),
-    url(r'^production/(?P<slug>[-\w]+)/render/$', views.productionRender, name="productionRender"),
-    url(r'^production/(?P<slug>[-\w]+)/update/$', views.productionUpdate, name="productionUpdate"),
+    path('login/', views.login_request, name='login'),
+    path("logout/", views.logout_request, name="logout"),
+    re_path(r'^production/(?P<slug>[-\w]+)/$', views.production, name="production"),
+    re_path(r'^production/(?P<slug>[-\w]+)/cardholders/$', views.productionCardholders, name="productionCardholders"),
+    re_path(r'^production/(?P<slug>[-\w]+)/render/$', views.productionRender, name="productionRender"),
+    re_path(r'^production/(?P<slug>[-\w]+)/update/$', views.productionUpdate, name="productionUpdate"),
     path('applicationadmin/', include(applicationadminpatterns), name='applicationadmin'),
 ]
 
