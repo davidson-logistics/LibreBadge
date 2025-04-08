@@ -2,10 +2,10 @@
 {% block title %}Production{% endblock %}
 {% load include_anything %}
 {% block maincontent %}
-{% for BadgeTemplate in BadgeTemplate %} {% comment "BadgeTemplate Iterator" %} Iterates through
-badgetemplates{% endcomment %}
-{% ifequal BadgeTemplate.slug slug %} {% comment "BadgeTemplate selector" %} Selects the badge template that matches the
-slug passed from the view{% endcomment %}
+{% for BadgeTemplate in BadgeTemplate %}
+{% comment "BadgeTemplate Iterator" %} Iterates through badge templates {% endcomment %}
+{% if BadgeTemplate.slug == slug %}
+{% comment "BadgeTemplate selector" %} Selects the badge template that matches the slug passed from the view{% endcomment %}
 <div class="h-100">
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <a class="navbar-brand">{{BadgeTemplate.name}}</a>
@@ -129,7 +129,7 @@ slug passed from the view{% endcomment %}
 </div>
 {% else %}
 Template not found
-{% endifequal %}
+{% endif %}
 {% endfor %}
 {% endblock %}
 {% block print %}
